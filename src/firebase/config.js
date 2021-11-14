@@ -7,7 +7,7 @@ const firebaseConfig = {
     storageBucket: "finalkochrendo.appspot.com",
     messagingSenderId: "677008161688",
     appId: "1:677008161688:web:d97090970174b3509349ed"
-  };  
+  };  //storage guarda img, db guarda los campos de la db, auth guarda el perfil y su autentificazion
 app.initializeApp(firebaseConfig);
 
 export const auth= firebase.auth()
