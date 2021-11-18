@@ -8,6 +8,8 @@ import {createDrawerNavigator} from "@react-navigation/drawer"
 const Drawer = createDrawerNavigator();
 import {auth} from "../firebase/config" 
 import {NavigationContainer} from "@react-navigation/native"
+import Posteo from '../screen/crearposteo';
+
 
 
 class   Navigation extends Component{ //Componente padre, perfil, login, home, registro, hijos. 
@@ -70,6 +72,7 @@ class   Navigation extends Component{ //Componente padre, perfil, login, home, r
                               <Drawer.Navigator>
                                 <Drawer.Screen name="Home" component={()=> <Home/>} />
                                 <Drawer.Screen name="Perfil" component={()=> <Perfil logout={()=>this.Logout()}/>}/>
+                                <Drawer.Screen name="Nuevo Posteo" component={()=> <Posteo/>} />
                             </Drawer.Navigator>   
                    }  </NavigationContainer>                                                                                            
                     
