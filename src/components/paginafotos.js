@@ -75,7 +75,7 @@ like(id){ //el id llega de abajo, del "boton"
         console.log(this.props.data.item.data)
         let {data} = this.props.data.item
   return (
-    <View style={styles.container}>
+    <View style={styles.contenedor}>
       
       <Text>usuario: {data.user}</Text>
       <Text>titulo: {data.title}</Text>
@@ -83,7 +83,7 @@ like(id){ //el id llega de abajo, del "boton"
       <Text>likes:{data.likes.length}</Text>
       <TouchableOpacity onPress={()=>this.like(this.props.data.item.id)}>
           
-          {this.state.likeado?<Text>deslikear</Text>:<Text>Likear</Text>}
+          {this.state.likeado?<Text style={styles.likeador}>deslikear</Text>:<Text style={styles.likeador}>Likear</Text>}
                     
                 </TouchableOpacity>
 
@@ -99,12 +99,29 @@ like(id){ //el id llega de abajo, del "boton"
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  contenedor: {
+    borderColor: 'black',
+    borderWidth: 8,
+    margin: 10,
+    padding: 8,
+    backgroundColor: 'lightgrey',
+    
   },
+
+  likeador: {
+    maxWidth: 100,
+  padding: 5,
+  fontSize: 13,
+  textAlign: 'center',
+  cursor: 'pointer',
+  outline: 'none',
+  color: 'black',
+  backgroundColor: 'green',
+  border: 'none',
+  borderRadius: 30,
+  boxShadow: 0,
+ 
+  }
 });
 
 export default Fotos
