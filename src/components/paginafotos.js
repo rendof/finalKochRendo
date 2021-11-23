@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Modal, FlatList} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import "firebase/firestore"
@@ -9,7 +9,10 @@ class Fotos extends Component{
     constructor(props){
       super(props)
       this.state={
-      likeado: false
+      likeado: false,
+      comentario: "",
+      modal: false,
+      textomodal: "Ver comentarios",
       }
     }
     componentDidMount(){
@@ -71,6 +74,43 @@ like(id){ //el id llega de abajo, del "boton"
 
     }
 }
+
+comentario(){
+    let comentario= {texto: this.state.comentario,
+                            usuario: auth.currentUser.email,
+                            fechaDeCreacion: Date.now()}
+    let agregarComentario = db.collection("posts").doc(`${this.props.data.item.id}`);
+
+    return agregarComentario.update({
+        comments : firebase.firestore.FieldValue.arrayUnion(comentario)
+    })
+    .then(() => {
+        console.log("comentario exitoso");
+    })
+    .catch((error) => {
+        console.error("Error updating document: ", error);
+    }); 
+    
+}
+
+modal(){
+    if (this.state.modal) {
+        this.setState({
+            modal: false,
+            textomodal: "Ver Comentarios"
+        })   
+    }
+    else{
+        this.setState({
+            modal: true,
+            textomodal: "Ocultar Comentarios"
+        })  
+    }
+}
+
+
+
+
     render(){
         console.log(this.props.data.item.data)
         let {data} = this.props.data.item
@@ -86,6 +126,33 @@ like(id){ //el id llega de abajo, del "boton"
           {this.state.likeado?<Text>deslikear</Text>:<Text>Likear</Text>}
                     
                 </TouchableOpacity>
+
+                <TextInput style={styles.input}
+                    keyboardType="default"
+                    placeholder="Escriba un comentario"
+                    onChangeText={text => this.setState({comentario:text})}
+                    value={this.state.comentario}
+
+                />
+
+                
+            <TouchableOpacity style={styles.touchable3} onPress={()=> this.modal()}> 
+                <Text style={styles.texto}>{this.state.textomodal}</Text>
+            </TouchableOpacity>
+
+            { this.state.modal?
+                <Modal visible={this.state.modal}
+                animationType="fade"
+                transparent={false}>
+                    {data.comments.length== 0? <Text>"no existen comentarios, empeza a escribirlos"</Text>:
+                        <FlatList  data={data.comments}
+                        keyExtractor= {(data)=> data.fechaDeCreacion.toString()}
+                        renderItem={({item})=> <Text> {item.usuario} escribio: {item.texto} </Text>}  /> 
+                        
+                    }
+                </Modal>:
+                <Text></Text>
+            }
 
                 {/* cuando le das al boton like ejecurtas la funcion "this.like" */}
 

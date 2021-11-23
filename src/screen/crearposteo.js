@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import {db, auth} from '../firebase/config'
+import NuestraCamara from '../components/nuestraCamara'
 
 class Posteo extends Component{
     constructor(props){
@@ -36,6 +37,11 @@ class Posteo extends Component{
   return (
     <View style={styles.container}>
       <Text>PAGINA DE Posteo</Text> 
+
+
+    <NuestraCamara/>
+
+
       {/* el text imput solo toma texto */}
       <TextInput 
                     keyboardType="default"
