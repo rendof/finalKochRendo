@@ -39,11 +39,11 @@ class Home extends Component{
     render(){
   return (
     <View style={styles.container}>
-      <Text>Pagina de Home!</Text>
+      <Text style={styles.titulo} >Pagina de Home!</Text>
       <FlatList  
                     data={this.state.post} // tiene que tener la info que le vamso a dar que le mandamos de mas arriba los posteos
                     keyExtractor={(data)=> data.id}
-                    renderItem={(item)=>( <Fotos data={item}/> )}  >
+                    renderItem={(item)=>( <Fotos style={styles.posteo} data={item}/> )}  >
                 </FlatList>
                 {/* no existe un map, flatlist es lo mismo aprox */}
       
@@ -56,10 +56,17 @@ class Home extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  titulo: {
+    fontFamily: 'arial',
+    fontSize: 30,
+  }
+
+
+  
 });
 
 export default Home
