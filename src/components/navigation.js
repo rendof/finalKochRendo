@@ -4,16 +4,16 @@ import Home from '../screen/home';
 import Perfil from '../screen/perfil';
 import Registro from '../screen/registro';
 import Login from '../screen/login';
-import {createDrawerNavigator} from "@react-navigation/drawer"
-const Drawer = createDrawerNavigator();
+import {createDrawerNavigator} from "@react-navigation/drawer" //paso 1
+const Drawer = createDrawerNavigator(); //pasoo 1.2
 import {auth} from "../firebase/config" 
-import {NavigationContainer} from "@react-navigation/native"
+import {NavigationContainer} from "@react-navigation/native" //paso 1.3
 import Posteo from '../screen/crearposteo';
 import Buscador from '../screen/buscador';
 
 
 
-class   Navigation extends Component{ //Componente padre, perfil, login, home, registro, hijos. 
+class Navigation extends Component{ //Componente padre, perfil, login, home, registro, hijos. 
 
   constructor(){
     super()
@@ -63,7 +63,9 @@ class   Navigation extends Component{ //Componente padre, perfil, login, home, r
             return(
                     
                      <NavigationContainer> 
-                     { this.state.logueado==false?
+                       {/* paso 2  */}
+                     { this.state.logueado==false? 
+                     
 
                      
                          <Drawer.Navigator>

@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import {db, auth} from '../firebase/config'
-import NuestraCamara from '../components/nuestraCamara'
+import NuestraCamara from '../components/nuestraCamara' // paso 1 camara
 
 class Posteo extends Component{
     constructor(props){
@@ -19,12 +19,14 @@ class Posteo extends Component{
       this.setState({
          
           url: url
+          //tambien paso 9 
       })
   }
 
     submitPost(){
         // de.collection se fija en la base se datos y crea algo en la coleccion posts
         // agrega loq ue vos le pidas  en este caso user title y demas 
+        // paso 10 ( no hace falta explicarlo)
         db.collection("posts").add({
             user: auth.currentUser.email,
             createdAt: Date.now(),
@@ -48,7 +50,9 @@ class Posteo extends Component{
       <Text>Comparti tu foto con la comunidad!</Text> 
 
 
-    <NuestraCamara onImageUpload={(url) => this.onImageUpload(url)}/> 
+    <NuestraCamara onImageUpload={(url) => this.onImageUpload(url)}/>   
+    {/* paso 2 camara */}
+    {/*  paso 9 recibe la url */}
 
 
       {/* el text imput solo toma texto */}

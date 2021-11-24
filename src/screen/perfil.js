@@ -47,7 +47,7 @@ class Perfil extends Component{
       <FlatList  
                     data={this.state.post} // tiene que tener la info que le vamso a dar que le mandamos de mas arriba los posteos
                     keyExtractor={(data)=> data.id}
-                    renderItem={(item)=>( <Fotos style={styles.posteo} data={item}/> )}  >
+                    renderItem={(item)=>( <Fotos style={styles.posteo} data={item} borrarPosteo={true}/> )}  >
                 </FlatList>
 
       

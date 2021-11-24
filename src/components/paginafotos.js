@@ -16,28 +16,23 @@ class Fotos extends Component{
       }
     }
     componentDidMount(){
-        if (this.props.data.item.data.likes.includes(`${auth.currentUser.email}`)) {
+        if (this.props.data.item.data.likes.includes(auth.currentUser.email)) {
             this.setState({
                 likeado:true
             })
             
-        } 
-        else{
-         this.setState({
-             likeado:false
-         })
         } 
          
      }
 
 like(id){ //el id llega de abajo, del "boton"
     if (this.state.likeado == false) {
-        var agregarLike = db.collection("posts").doc(`${id}`);
+        var agregarLike = db.collection("posts").doc(id);
         // si likeado = false osea no esta likeado loq ue hace es agregar un like
         
 
         return agregarLike.update({
-            likes : firebase.firestore.FieldValue.arrayUnion(`${auth.currentUser.email}`)
+            likes : firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
          // estamos haciendo referencia al posteo y actualizandolo, 
          //le actualizamos el array likes que estaba vasio 
          // SI O SI hayq ue poner todo ese codigo firebase.fire......
@@ -56,10 +51,10 @@ like(id){ //el id llega de abajo, del "boton"
                   
     }
     else{
-        var quitarLike = db.collection("posts").doc(`${id}`);
+        var quitarLike = db.collection("posts").doc(id);
 
         return quitarLike.update({
-            likes : firebase.firestore.FieldValue.arrayRemove(`${auth.currentUser.email}`)
+            likes : firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
         // el arrayRemove va a buscar el mail del usuario y le va a sacar el like 
         .then(() => {
@@ -108,7 +103,13 @@ modal(){
     }
 }
 
+borrarPosteo(){
 
+    db.collection('posts').doc(this.props.data.item.id).delete()
+    .then(()=>{
+      console.log(this.props.data.item.id)
+    })
+  }
 
 
     render(){
@@ -123,6 +124,7 @@ modal(){
       <Text>Contenido: {data.description}</Text>
       <Text>likes:{data.likes.length}</Text>
       <Text>Comentarios:{data.comments.length}</Text>
+
       <TouchableOpacity style = {styles.likeador} onPress={()=>this.like(this.props.data.item.id)}>
           
           {this.state.likeado?<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Dislike</Text>:<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Like</Text>}
@@ -135,6 +137,17 @@ modal(){
             <TouchableOpacity style={styles.touchable} onPress={()=> this.modal()}> 
                 <Text style={styles.texto}>{this.state.textomodal}</Text>
             </TouchableOpacity>
+
+            {this.props.borrarPosteo?
+
+            <TouchableOpacity style={styles.likeador} onPress={()=> this.borrarPosteo()}> 
+            <Text style={styles.texto}> Delete Post</Text>
+             </TouchableOpacity>
+
+             : null
+            
+           }
+            
 
             { this.state.modal?
                 <Modal style = {styles.modalgede}visible={this.state.modal}
