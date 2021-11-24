@@ -9,10 +9,18 @@ class Posteo extends Component{
         this.state={
             title: "",
             description:"",
+            url: ""
         
             
         }
     }
+
+    onImageUpload(url){
+      this.setState({
+         
+          url: url
+      })
+  }
 
     submitPost(){
         // de.collection se fija en la base se datos y crea algo en la coleccion posts
@@ -24,6 +32,7 @@ class Posteo extends Component{
             description: this.state.description ,
             likes: [],
             comments: [],
+            image: this.state.url
         })
         .then(() => {
             this.setState({
@@ -39,7 +48,7 @@ class Posteo extends Component{
       <Text>PAGINA DE Posteo</Text> 
 
 
-    <NuestraCamara/>
+    <NuestraCamara onImageUpload={(url) => this.onImageUpload(url)}/> 
 
 
       {/* el text imput solo toma texto */}

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Modal, FlatList} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Modal, FlatList, Image} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import "firebase/firestore"
@@ -118,6 +118,7 @@ modal(){
     <View style={styles.contenedor}>
       
       <Text>usuario: {data.user}</Text>
+      <Image source={{uri:data.image}} style={{height:100, width:100}}/>
       <Text>titulo: {data.title}</Text>
       <Text>contenido: {data.description}</Text>
       <Text>likes:{data.likes.length}</Text>
@@ -127,13 +128,7 @@ modal(){
                     
                 </TouchableOpacity>
 
-                <TextInput style={styles.ingresoTexto}
-                    keyboardType="default"
-                    placeholder="Escriba un comentario"
-                    onChangeText={text => this.setState({comentario:text})}
-                    value={this.state.comentario}
-
-                />
+                
 
                 
             <TouchableOpacity style={styles.touchable} onPress={()=> this.modal()}> 
@@ -150,6 +145,17 @@ modal(){
                         renderItem={({item})=> <Text> {item.usuario} escribio: {item.texto} </Text>}  /> 
                         
                     }
+                    <TextInput style={styles.ingresoTexto}
+                    keyboardType="default"
+                    placeholder="Escriba un comentario"
+                    onChangeText={text => this.setState({comentario:text})}
+                    value={this.state.comentario}
+
+
+                />
+                <TouchableOpacity style={styles.touchable} onPress={()=> this.comentario()}> 
+                <Text style={styles.texto}>Comentar</Text>
+             </TouchableOpacity>
                 </Modal>:
                 <Text></Text>
             }

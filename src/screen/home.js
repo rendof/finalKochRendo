@@ -18,7 +18,7 @@ class Home extends Component{
       //sirve para por ej un fech que no tiene un boton 
       // en este caso lo usamos para traer los posteos
       // para ver los posteos usamos el metodo onSnapchot
-      db.collection("posts").onSnapshot((docs)=>{
+      db.collection("posts").orderBy("createdAt", "desc").onSnapshot((docs)=>{
         //onsnapshot es la encargada de traer loque hay dentro de posteos y le pone de nombre docs
         let posts = []
         docs.forEach((doc)=>{

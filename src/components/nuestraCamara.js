@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import {Camera} from "expo-camera"
 import {storage} from "../firebase/config"
 
@@ -66,7 +66,7 @@ render(){
         {this.state.photo ?
         <>
             <Image 
-                style={{width:"100", flex:1,}}
+                style={{width:"30%", flex:1,}}
                 source={{uri: this.state.photo}}
             />
             <View>
