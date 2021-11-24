@@ -39,7 +39,7 @@ class Home extends Component{
     render(){
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo} >Pagina de Home!</Text>
+      <Text style={styles.titulo} >Home</Text>
       <FlatList  
                     data={this.state.post} // tiene que tener la info que le vamso a dar que le mandamos de mas arriba los posteos
                     keyExtractor={(data)=> data.id}

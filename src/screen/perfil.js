@@ -34,10 +34,10 @@ class Perfil extends Component{
     render(){
   return (
     <View style={styles.container}>
-      <Text>Pagina del Perfil!!</Text>
+      <Text>Perfil</Text>
       <Text>Email del usuario: {auth.currentUser.email}</Text>
-      <Text>Fecha de Creacion: {auth.currentUser.metadata.creationTime}</Text>
-      <Text>Ultima Conexion: {auth.currentUser.metadata.lastSignInTime}</Text>
+      <Text>Fecha de Creación: {auth.currentUser.metadata.creationTime}</Text>
+      <Text>Ultima Conexión: {auth.currentUser.metadata.lastSignInTime}</Text>
       <TouchableOpacity  onPress={()=> this.props.logout()}>
                 <Text>Desloguearse</Text>
             </TouchableOpacity>
