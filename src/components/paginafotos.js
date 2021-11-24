@@ -118,13 +118,13 @@ modal(){
     <View style={styles.contenedor}>
       
       <Text>usuario: {data.user}</Text>
-      <Image source={{uri:data.image}} style={{height:100, width:100}}/>
+      <Image source={{uri:data.image}} style={{height:200, width:200}}/>
       <Text>titulo: {data.title}</Text>
       <Text>contenido: {data.description}</Text>
       <Text>likes:{data.likes.length}</Text>
-      <TouchableOpacity onPress={()=>this.like(this.props.data.item.id)}>
+      <TouchableOpacity style = {styles.likeador} onPress={()=>this.like(this.props.data.item.id)}>
           
-          {this.state.likeado?<Text style={styles.likeador}>deslikear</Text>:<Text style={styles.likeador}>Likear</Text>}
+          {this.state.likeado?<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Dislike</Text>:<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Like</Text>}
                     
                 </TouchableOpacity>
 
@@ -173,6 +173,8 @@ modal(){
 
 const styles = StyleSheet.create({
   contenedor: {
+    display:'flex',
+    alignItems:'center',
     borderColor: 'black',
     borderWidth: 8,
     margin: 10,
@@ -182,17 +184,12 @@ const styles = StyleSheet.create({
   },
 
   likeador: {
-    maxWidth: 100,
-  padding: 5,
-  fontSize: 13,
-  textAlign: 'center',
-  cursor: 'pointer',
-  outline: 'none',
-  color: 'black',
-  backgroundColor: 'green',
-  border: 'none',
-  borderRadius: 30,
-  boxShadow: 0,
+    
+        paddingVertical: 5,
+        width:'25%',
+        backgroundColor:'rgb(58, 58, 211)',
+        
+    
  
   }
 });

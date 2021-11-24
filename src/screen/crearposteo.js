@@ -52,22 +52,22 @@ class Posteo extends Component{
 
 
       {/* el text imput solo toma texto */}
-      <TextInput 
+      <TextInput style = {styles.input}
                     keyboardType="default"
                     placeholder="Título"
                     onChangeText={text => this.setState({title:text})}
                     // on change solo temcambia el valor de los estados, no hace la magia ni sube archivo
                     value={this.state.title}
                 />
-                <TextInput 
+                <TextInput style = {styles.input}
                     keyboardType="default"
                     placeholder="Description"
                     onChangeText={text => this.setState({description:text})}
                     value={this.state.description}
                     multiline={true}
                 />
-                <TouchableOpacity   onPress={()=> this.submitPost()} >
-                        <Text >Crea tu posteo</Text>
+                <TouchableOpacity  style = {styles.button} onPress={()=> this.submitPost()} >
+                        <Text style={{color:'white',fontWeight:'bold'}} >Crea tu posteo</Text>
                         {/* cuando das click ejecuta el submit post */}
                         {/*  submit post es elq ue se encarga de subir todo */}
                     </TouchableOpacity>
@@ -87,6 +87,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  input: {
+    width:'80%',
+    paddingVertical: 10,
+    border:'solid 1px black',
+    paddingLeft: 10,
+    marginVertical:10,
+
+},
+button: {
+    paddingVertical: 15,
+    width:'60%',
+    backgroundColor:'rgb(58, 58, 211)',
+    paddingLeft: 50,
+    marginBottom:15,
+}
 });
 
 export default Posteo

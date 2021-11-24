@@ -66,26 +66,26 @@ render(){
         {this.state.photo ?
         <>
             <Image 
-                style={{width:"30%", flex:1,}}
+                style={{width:"80%", flex:1,}}
                 source={{uri: this.state.photo}}
             />
-            <View>
-                <TouchableOpacity onPress= {()=>this.savePhoto()}>
-                    <Text>Aceptar</Text>
+            <View style = {{width:"80%", display:"flex",flexDirection:'row', justifyContent:'space-around'}}>
+                <TouchableOpacity style = {styles.buttonOK} onPress= {()=>this.savePhoto()}>
+                    <Text style={{color:'white',fontWeight:'bold'}}>Aceptar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Cancelar</Text>
+                <TouchableOpacity style = {styles.buttonNO} >
+                    <Text style={{color:'white',fontWeight:'bold'}}>Cancelar</Text>
                 </TouchableOpacity>
             </View>
         </>:
         <>
             <Camera 
-                style={{flex:1,width:"30%"}}
+                style={{flex:1,width:"80%"}}
                 type= {Camera.Constants.Type.front}
                 ref={(cam)=> (this.camera = cam)}
             />
-            <TouchableOpacity onPress={()=> this.takePicture()}>
-                <Text>Shoot</Text>
+            <TouchableOpacity style ={ styles.button} onPress={()=> this.takePicture()}>
+                <Text style={{color:'white',fontWeight:'bold'}} >Shoot</Text>
             </TouchableOpacity></>}
         </>
     )
@@ -103,6 +103,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height:"50%",
   },
+  button: {
+    paddingVertical: 5,
+    width:'25%',
+    backgroundColor:'rgb(58, 58, 211)',
+    paddingLeft: 20,
+    marginVertical:5,
+    
+},
+buttonOK: {
+    paddingVertical: 5,
+    width:'40%',
+    backgroundColor:'green',
+    paddingLeft: 20,
+    marginVertical:5,
+    
+},
+buttonNO: {
+    paddingVertical: 5,
+    width:'40%',
+    backgroundColor:'red',
+    paddingLeft: 20,
+    marginVertical:5,
+    
+}
 });
 
 export default nuestraCamara
