@@ -74,7 +74,7 @@ class   Navigation extends Component{ //Componente padre, perfil, login, home, r
                                 <Drawer.Screen name="Home" component={()=> <Home/>} />
                                 <Drawer.Screen name="Perfil" component={()=> <Perfil logout={()=>this.Logout()}/>}/>
                                 <Drawer.Screen name="Nuevo Posteo" component={()=> <Posteo/>} />
-                                <Drawer.Screen name="Buscador" component={()=> <Buscador/>} />
+                                <Drawer.Screen name="Buscador" component={()=> <Buscador/>} /> 
                             </Drawer.Navigator>   
                    }  </NavigationContainer>                                                                                            
                     

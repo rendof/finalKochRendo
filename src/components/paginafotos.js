@@ -127,7 +127,7 @@ modal(){
                     
                 </TouchableOpacity>
 
-                <TextInput style={styles.input}
+                <TextInput style={styles.ingresoTexto}
                     keyboardType="default"
                     placeholder="Escriba un comentario"
                     onChangeText={text => this.setState({comentario:text})}
@@ -136,7 +136,7 @@ modal(){
                 />
 
                 
-            <TouchableOpacity style={styles.touchable3} onPress={()=> this.modal()}> 
+            <TouchableOpacity style={styles.touchable} onPress={()=> this.modal()}> 
                 <Text style={styles.texto}>{this.state.textomodal}</Text>
             </TouchableOpacity>
 

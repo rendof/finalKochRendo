@@ -66,7 +66,7 @@ render(){
         {this.state.photo ?
         <>
             <Image 
-                style={{width:"100", flex:1}}
+                style={{width:"100", flex:1,}}
                 source={{uri: this.state.photo}}
             />
             <View>
@@ -80,7 +80,7 @@ render(){
         </>:
         <>
             <Camera 
-                style={{flex:1,width:"100"}}
+                style={{flex:1,width:"30%"}}
                 type= {Camera.Constants.Type.front}
                 ref={(cam)=> (this.camera = cam)}
             />
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    height:"50%",
   },
 });
 
