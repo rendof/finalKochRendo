@@ -45,7 +45,7 @@ class Posteo extends Component{
     render(){
   return (
     <View style={styles.container}>
-      <Text>PAGINA DE Posteo</Text> 
+      <Text>Comparti tu foto con la comunidad!</Text> 
 
 
     <NuestraCamara onImageUpload={(url) => this.onImageUpload(url)}/> 

@@ -117,11 +117,12 @@ modal(){
   return (
     <View style={styles.contenedor}>
       
-      <Text>usuario: {data.user}</Text>
+      <Text style = {{paddingBottom:10,fontSize:20,fontWeight:'bold'}}>{data.user}</Text>
       <Image source={{uri:data.image}} style={{height:200, width:200}}/>
-      <Text>titulo: {data.title}</Text>
-      <Text>contenido: {data.description}</Text>
+      <Text style = {styles.dataposteo}>Titulo: {data.title}</Text>
+      <Text>Contenido: {data.description}</Text>
       <Text>likes:{data.likes.length}</Text>
+      <Text>Comentarios:{data.comments.length}</Text>
       <TouchableOpacity style = {styles.likeador} onPress={()=>this.like(this.props.data.item.id)}>
           
           {this.state.likeado?<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Dislike</Text>:<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Like</Text>}
@@ -136,13 +137,13 @@ modal(){
             </TouchableOpacity>
 
             { this.state.modal?
-                <Modal visible={this.state.modal}
+                <Modal style = {styles.modalgede}visible={this.state.modal}
                 animationType="fade"
                 transparent={false}>
-                    {data.comments.length== 0? <Text>"no existen comentarios, empeza a escribirlos"</Text>:
+                    {data.comments.length== 0? <Text style = {styles.dataposteo}>"no hay comentarios, haz uno!"</Text>:
                         <FlatList  data={data.comments}
                         keyExtractor= {(data)=> data.fechaDeCreacion.toString()}
-                        renderItem={({item})=> <Text> {item.usuario} escribio: {item.texto} </Text>}  /> 
+                        renderItem={({item})=> <Text style = {styles.dataposteo}> {item.usuario} escribio: {item.texto} </Text>}  /> 
                         
                     }
                     <TextInput style={styles.ingresoTexto}
@@ -175,22 +176,38 @@ const styles = StyleSheet.create({
   contenedor: {
     display:'flex',
     alignItems:'center',
-    borderColor: 'black',
-    borderWidth: 8,
+    borderColor: '#d8d8d8',
+    borderRadius: 5,
+    borderWidth: 2,
     margin: 10,
-    padding: 8,
-    backgroundColor: 'lightgrey',
-    
+    padding: 15,
+    shadowRadius: 10,
   },
 
+  dataposteo: {
+    padding: 3,
+    fontSize: 13,
+  },
+
+
   likeador: {
-    
         paddingVertical: 5,
         width:'25%',
         backgroundColor:'rgb(58, 58, 211)',
-        
-    
- 
+        borderRadius:15,
+        margin:10,
+  },
+  modalgede: {
+    borderColor:'rgb(58, 58, 211)',
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding:10,
+  },
+
+  ingresoTexto: {
+      color:'lightGray',
+      borderRadius:15,
+
   }
 });
 

@@ -34,11 +34,13 @@ class Perfil extends Component{
     render(){
   return (
     <View style={styles.container}>
-      <Text>Perfil</Text>
-      <Text>Email del usuario: {auth.currentUser.email}</Text>
-      <Text>Fecha de Creación: {auth.currentUser.metadata.creationTime}</Text>
-      <Text>Ultima Conexión: {auth.currentUser.metadata.lastSignInTime}</Text>
-      <TouchableOpacity  onPress={()=> this.props.logout()}>
+      <Text style={{color:'black',fontWeight:'bold',marginBottom:10,fontSize:30,marginTop:15}}>Perfil</Text>
+      <Text style={styles.fechas}>Email del usuario: {auth.currentUser.email}</Text>
+      <Text style={{color:'black',fontWeight:'bold',}}> Fecha de Creación:</Text>
+      <Text style={styles.fechas}> {auth.currentUser.metadata.creationTime}</Text>
+      <Text style={{color:'black',fontWeight:'bold',}}> Ultima Conexión: </Text>
+      <Text style={styles.fechas}>{auth.currentUser.metadata.lastSignInTime}</Text>
+      <TouchableOpacity style = {styles.button} onPress={()=> this.props.logout()}>
                 <Text>Desloguearse</Text>
             </TouchableOpacity>
             <Text style={styles.titulo} >Publicaciones</Text>
@@ -64,7 +66,22 @@ const styles = StyleSheet.create({
   titulo: {
     fontFamily: 'arial',
     fontSize: 30,
-  }
+  },
+  button: {
+    paddingVertical: 15,
+    width:'60%',
+    backgroundColor:'rgb(58, 58, 211)',
+    paddingLeft: 60,
+
+},
+  fechas: {
+    color:'black',
+    marginBottom:10,
+    fontSize:13,
+    marginTop:10,
+    paddingHorizontal: 15,
+    alignSelf: 'center',
+  },
 });
 
 export default Perfil

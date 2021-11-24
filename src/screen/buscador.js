@@ -44,8 +44,8 @@ class Buscador extends Component{
                 onChangeText={text => this.setState({perfil:text})}
             />
     
-                <TouchableOpacity style={styles.touchable} onPress={()=> this.showPost()}>
-                    <Text style={styles.texto}>Buscar Post</Text>
+                <TouchableOpacity style={styles.button} onPress={()=> this.showPost()}>
+                    <Text style={{color:'white',fontWeight:'bold'}}>Buscar Post</Text>
                 </TouchableOpacity>
            
             <FlatList  
@@ -62,6 +62,21 @@ class Buscador extends Component{
    
 }
 const styles = StyleSheet.create({
+    input: {
+        width:'80%',
+        paddingVertical: 10,
+        border:'solid 1px black',
+        paddingLeft: 10,
+        marginVertical:10,
+        marginLeft:20,
+    },
+    button: {
+        paddingVertical: 15,
+        width:'60%',
+        backgroundColor:'rgb(58, 58, 211)',
+        paddingLeft: 50,
+        marginLeft: 50,
+    }
 })
 
 export default Buscador
