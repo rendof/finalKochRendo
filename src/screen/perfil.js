@@ -45,7 +45,7 @@ class Perfil extends Component{
             </TouchableOpacity>
             <Text style={styles.titulo} >Publicaciones</Text>
       <FlatList  
-                    data={this.state.post} // tiene que tener la info que le vamso a dar que le mandamos de mas arriba los posteos
+                    data={this.state.post} 
                     keyExtractor={(data)=> data.id}
                     renderItem={(item)=>( <Fotos style={styles.posteo} data={item} borrarPosteo={true}/> )}  >
                 </FlatList>

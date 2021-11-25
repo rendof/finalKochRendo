@@ -25,19 +25,15 @@ class Fotos extends Component{
          
      }
 
-like(id){ //el id llega de abajo, del "boton"
+like(id){ 
     if (this.state.likeado == false) {
         var agregarLike = db.collection("posts").doc(id);
-        // si likeado = false osea no esta likeado loq ue hace es agregar un like
+        
         
 
         return agregarLike.update({
             likes : firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-         // estamos haciendo referencia al posteo y actualizandolo, 
-         //le actualizamos el array likes que estaba vasio 
-         // SI O SI hayq ue poner todo ese codigo firebase.fire......
-         //filedvalue= hace referencia a los likes
-         // arrayunion= hace referencia a agregar cosas
+         
         })
         .then(() => {
             this.setState({
@@ -56,7 +52,7 @@ like(id){ //el id llega de abajo, del "boton"
         return quitarLike.update({
             likes : firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
-        // el arrayRemove va a buscar el mail del usuario y le va a sacar el like 
+        
         .then(() => {
             this.setState({
 
@@ -127,7 +123,9 @@ borrarPosteo(){
 
       <TouchableOpacity style = {styles.likeador} onPress={()=>this.like(this.props.data.item.id)}>
           
-          {this.state.likeado?<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Dislike</Text>:<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Like</Text>}
+          {this.state.likeado?<Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Dislike</Text>
+          :
+          <Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}>Like</Text>}
                     
                 </TouchableOpacity>
 
@@ -141,7 +139,7 @@ borrarPosteo(){
             {this.props.borrarPosteo?
 
             <TouchableOpacity style={styles.likeador} onPress={()=> this.borrarPosteo()}> 
-            <Text style={styles.texto}> Delete Post</Text>
+            <Text style={{color:'white',fontWeight:'bold',textAlign:'center'}}> Delete Post</Text>
              </TouchableOpacity>
 
              : null
@@ -174,7 +172,7 @@ borrarPosteo(){
                 <Text></Text>
             }
 
-                {/* cuando le das al boton like ejecurtas la funcion "this.like" */}
+            
 
 
       
