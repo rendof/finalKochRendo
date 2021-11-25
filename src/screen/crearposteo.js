@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import {db, auth} from '../firebase/config'
-import NuestraCamara from '../components/nuestraCamara' // paso 1 camara
+import NuestraCamara from '../components/nuestraCamara' 
 
 class Posteo extends Component{
     constructor(props){
@@ -19,14 +19,12 @@ class Posteo extends Component{
       this.setState({
          
           url: url
-          //tambien paso 9 
+          
       })
   }
 
     submitPost(){
-        // de.collection se fija en la base se datos y crea algo en la coleccion posts
-        // agrega loq ue vos le pidas  en este caso user title y demas 
-        // paso 10 ( no hace falta explicarlo)
+       
         db.collection("posts").add({
             user: auth.currentUser.email,
             createdAt: Date.now(),
@@ -51,16 +49,14 @@ class Posteo extends Component{
 
 
     <NuestraCamara onImageUpload={(url) => this.onImageUpload(url)}/>   
-    {/* paso 2 camara */}
-    {/*  paso 9 recibe la url */}
+  
 
 
-      {/* el text imput solo toma texto */}
       <TextInput style = {styles.input}
                     keyboardType="default"
                     placeholder="Título"
                     onChangeText={text => this.setState({title:text})}
-                    // on change solo temcambia el valor de los estados, no hace la magia ni sube archivo
+                    
                     value={this.state.title}
                 />
                 <TextInput style = {styles.input}
@@ -72,8 +68,7 @@ class Posteo extends Component{
                 />
                 <TouchableOpacity  style = {styles.button} onPress={()=> this.submitPost()} >
                         <Text style={{color:'white',fontWeight:'bold'}} >Crea tu posteo</Text>
-                        {/* cuando das click ejecuta el submit post */}
-                        {/*  submit post es elq ue se encarga de subir todo */}
+                       
                     </TouchableOpacity>
       
       

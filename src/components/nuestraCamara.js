@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import {Camera} from "expo-camera" //paso 3 camara
+import {Camera} from "expo-camera" 
 import {storage} from "../firebase/config"
 
 
@@ -11,13 +11,13 @@ class nuestraCamara extends Component{
     this.state={
         permission: false,
         photo: null,
-        //paso 3.1 Camara 
+        
     }
     this.camera 
-    //paso 3.2 camara  MUY importante, sino no funca 
+    
 }
 
-// paso 4 camara permisos
+
 componentDidMount(){
     Camera.requestCameraPermissionsAsync()
     .then(()=>{
@@ -30,13 +30,13 @@ componentDidMount(){
     Camera.getAvailableCameraTypesAsync()
     .then((res)=> console.log(res))
 }
-// fin paso 4 camara
+
 
 takePicture(){ 
-    // paso 6 (viene de abajo, linea 94)
+    
     this.camera.takePictureAsync()
     .then((photo)=>{
-       // console.log(photo)
+       
         this.setState({
             photo:photo.uri
         })
@@ -44,7 +44,7 @@ takePicture(){
     .catch((err)=>console.log(err))
 
 }
- //paso 8 guardado de foto en base de datos
+ 
 savePhoto(){
     fetch(this.state.photo)
         .then((res)=> res.blob())
@@ -54,7 +54,7 @@ savePhoto(){
                     .then(()=>{
                         ref.getDownloadURL()
                             .then((url)=> {
-                                //paso 9 (nos volvemos a crear posteo)
+                                
                                 this.props.onImageUpload(url)
                                 this.setState({
                                     photo:""
@@ -64,16 +64,16 @@ savePhoto(){
             })
         .catch((err)=>console.log(err))
 }
-// fin paso 8 
+
 
 
 render(){
     return(
         <>
         {this.state.photo ? 
-        //paso 5 explicar aca y a la linea 85
+        
         <>
-        {/* paso 7 */}
+        
             <Image 
                 style={{width:"80%", flex:1,}}
                 source={{uri: this.state.photo}}
@@ -81,15 +81,15 @@ render(){
             <View style = {{width:"80%", display:"flex",flexDirection:'row', justifyContent:'space-around'}}>
                 <TouchableOpacity style = {styles.buttonOK} onPress= {()=>this.savePhoto()}>
                     <Text style={{color:'white',fontWeight:'bold'}}>Aceptar</Text>
-                    {/* si aceptas vamos al paso 8  */}
+                    
                 </TouchableOpacity>
                 <TouchableOpacity style = {styles.buttonNO} onPress= {()=> this.setState({photo:null})} > 
-                {/* si la foto es nula volvemos al paso 5 */}
+                
                     <Text style={{color:'white',fontWeight:'bold'}}>Cancelar</Text>
                 </TouchableOpacity>
             </View>
         </>: 
-        // paso 5
+        
         <>
             <Camera 
                 style={{flex:1,width:"80%"}}
