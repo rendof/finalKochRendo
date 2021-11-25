@@ -33,7 +33,7 @@ like(id){
 
         return agregarLike.update({
             likes : firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-         
+        
         })
         .then(() => {
             this.setState({
@@ -172,7 +172,7 @@ borrarPosteo(){
                 <Text></Text>
             }
 
-            
+                
 
 
       

@@ -12,19 +12,20 @@ class Home extends Component{
         
     }}
     componentDidMount(){
-      
-      db.collection("posts").orderBy("createdAt", "desc").onSnapshot((documentos)=>{
-       
+    
+      db.collection("posts").orderBy("createdAt", "desc").onSnapshot((docs)=>{
+        
         let posts = []
-        documentos.forEach((doc)=>{
-          
+        docs.forEach((doc)=>{
+         
             posts.push({
                 id: doc.id,
                 data: doc.data()
             })
             
         })
-        this.setState({ 
+        this.setState({
+         
             post: posts
         })
     })
